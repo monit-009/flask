@@ -2,14 +2,13 @@ from flask import Flask,request,render_template
 
 obj=Flask(__name__)
 
-@app.route('/')
+@obj.route('/')
 def welcome():
     return "welcome to flask"
 
 print(__name__)
 
-if __name__=='__main__':
-    obj.run()
+
 
 @obj.route('/cal',methods=["GET"])
 def math_operatior():
@@ -18,14 +17,17 @@ def math_operatior():
     number2=request.json["number2"]
     
     if operation=="add":
-        result=number1+number2
+        result=int(number1)+int(number2)
     elif operation=="multiply":
-        result=number1*number2
+        result=int(number1)*int(number2)
     elif operation=="division":
-        result=number1/number2
+        result=int(number1)/int(number2)
     else:
-        result=number1-number2
-    return result
+        result=int(number1)-int(number2)
+    return "the operation is {} and the result is {}".format(operation,result)
+
+if __name__=='__main__':
+    obj.run()
         
         
           
